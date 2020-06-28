@@ -1,0 +1,6 @@
+.tabs {
+    display: flex;
+}
+.tabs button {
+    width: 50%;
+}
