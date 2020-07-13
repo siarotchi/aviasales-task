@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import s from './Ticket.module.css'
-import logoS7 from '../../images/S7Logo.png'
+import moment from 'moment'
 
 export class Ticket extends Component {
     constructor(props) {
@@ -12,7 +12,7 @@ export class Ticket extends Component {
         const lastCharacter = number.toString().slice(-1)
         if (lastCharacter === '1') {
             return 'Пересадка'
-        } else if (lastCharacter === '2' || lastCharacter === '3' || lastCharacter === '4') {
+        } else if (lastCharacter === '2' || lastCharacter === '3') {
             return 'Пересадки'
         } else {
             return 'Пересадок'
@@ -27,6 +27,8 @@ export class Ticket extends Component {
     }
     render() {
         const ticket = this.props.ticket
+        let date = new Date(ticket.segments[0].date)
+        let date2 = new Date(ticket.segments[1].date)
         return (
             <div
                 className="container mt-5"
@@ -36,12 +38,12 @@ export class Ticket extends Component {
                     <div className="col-12-xl d-flex flex-column">
                         <div className="logo d-flex flex-row justify-content-between mb-2">
                             <h3 className={s.price}>{`${ticket.price} P`}</h3>
-                            <img src={logoS7} alt="logo"></img>
-                            {/* <img
+                            {/* <img src={logoS7} alt="logo"></img> */}
+                            <img
                                 className="carrier-image"
                                 src={`//pics.avs.io/110/36/${ticket.carrier}.png`}
                                 alt={ticket.carrier}
-                            /> */}
+                            />
                         </div>
 
                         <div className="d-flex flex-row justify-content-between">
@@ -50,11 +52,24 @@ export class Ticket extends Component {
                                     {`${ticket.segments[0].origin} -  
                                 ${ticket.segments[0].destination}`}
                                 </p>
-                                <p className={s.blackText}>{ticket.segments[0].date}</p>
+                                <p className={s.blackText}>
+                                    {date.getHours()} : {date.getMinutes()}-
+                                    {/* {moment(ticket.segments[0].date).format('HH:MM')} -{' '}
+                                    {moment(ticket.segments[0].date).add(10, 'minutes').format('HH:MM')} */}
+                                </p>
+
                                 <hr />
                                 <p className={s.greyText}>{`${ticket.segments[1].origin} -  
                                 ${ticket.segments[1].destination}`}</p>
-                                <p className={s.blackText}>{ticket.segments[1].date}</p>
+
+                                <p className={s.blackText}>
+                                    {moment(ticket.segments[0].date).format('HH:MM')} -{' '}
+                                    {/* {moment
+                                        .utc(ticket.segments[1].date)
+                                        .add(ticket.segments[1].duration, 'seconds')
+                                        .format('HH:MM')} */}
+                                    {/* {ticket.segments[1].date} */}
+                                </p>
                             </div>
 
                             <div className={s.block}>

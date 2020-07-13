@@ -9,8 +9,8 @@ export default function useGetId() {
             method: 'GET',
             url: 'https://front-test.beta.aviasales.ru/search',
         }).then((res) => {
-            setId(res.data.searchId)
-            //   console.log(res.data);
+            // setId(res.data.searchId)
+            console.log(res.data)
         })
     }, [])
     return { searchId }

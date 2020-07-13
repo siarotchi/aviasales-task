@@ -4,11 +4,11 @@ import Header from './components/Header/Header'
 import Filter from './components/Filter/Filter'
 import { Tickets } from './components/Tickets/Tickets'
 
-function App() {
+const App = () => {
     return (
         <div className="App">
             <Header />
-            <div className="appContainer mx-auto">
+            <div className="appContainer">
                 <Filter />
                 <Tickets />
             </div>

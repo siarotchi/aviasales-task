@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import useGetId from './useGetId'
 
 export default function useGetTickets() {
     const [tickets, setTickets] = useState([])
-
+    // const { searchId } = useGetId()
+    useGetId()
     // useEffect(() => {
     //     axios({
     //         method: 'GET',
@@ -22,7 +24,7 @@ export default function useGetTickets() {
     useEffect(() => {
         axios({
             method: 'GET',
-            url: 'https://front-test.beta.aviasales.ru/tickets?searchId=3ehtu',
+            url: `https://front-test.beta.aviasales.ru/tickets?searchId=3lx9n`,
         })
             .then((res) => {
                 setTickets(res.data.tickets)

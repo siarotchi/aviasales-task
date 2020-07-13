@@ -1,52 +1,23 @@
-import React, { Component } from 'react'
-import './Tabs.css'
+import React from 'react'
+import s from './Tabs.module.css'
+import { useSelector, useDispatch } from 'react-redux'
+import { setSort } from '../../redux/action'
 
-class Tabs extends Component {
-    constructor(props) {
-        super(props)
+const Tabs = () => {
+    const sort = useSelector((state) => state.sort)
+    const dispatch = useDispatch()
 
-        this.state = {
-            // selected: this.props.initial,
-            selected: false,
-        }
-
-        this.onClick = this.onClick.bind(this)
+    function handleChange(e) {
+        dispatch(setSort(e.target.value))
     }
 
-    onClick = (event) => {
-        console.log('Clicked')
-        this.setState({
-            selected: true,
-        })
-        // this.setState({
-        //     ...this.state,
-        //     selected: event.target.id,
-        // })
-        // this.props.setSorter(event.target.id)
-    }
-
-    render() {
-        return (
-            <div className="tabs">
-                <div
-                    className="column left"
-                    id="cheapest"
-                    isActive={this.state.selected === 'cheapest'}
-                    onClick={this.onClick}
-                >
-                    Самый дешевый
-                </div>
-                <div
-                    className="column right"
-                    id="fastest"
-                    isActive={this.state.selected === 'fastest'}
-                    onClick={this.onClick}
-                >
-                    Самый быстрый
-                </div>
-            </div>
-        )
-    }
+    return (
+        <div className={s.blockTabs}>
+            <input type="radio" value="cheep" checked={sort === 'cheep'} onChange={handleChange} id="cheep" />
+            <label htmlFor="cheep">САМЫЙ ДЕШЕВЫЙ</label>
+            <input type="radio" value="fast" checked={sort === 'fast'} onChange={handleChange} id="fast" />
+            <label htmlFor="fast">САМЫЙ БЫСТРЫЙ</label>
+        </div>
+    )
 }
-
 export default Tabs

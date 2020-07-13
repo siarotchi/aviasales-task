@@ -11,6 +11,7 @@
 }
 .appContainer {
     display: flex;
+    margin: 0 20%;
 }
 h2 {
     font-style: normal;

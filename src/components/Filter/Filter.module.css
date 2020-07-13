@@ -1,55 +1,76 @@
-.wrapper {
-    width: 232px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    margin-right: 60px;
-}
-
-.quantityTitle {
-    padding-top: 20px;
-}
-
-.filterItem:hover,
-.filterItem label:hover {
-    background: #f1fcff;
-    cursor: pointer;
-}
-
-ul {
+.filter {
+    width: 250px;
     display: flex;
     flex-direction: column;
-    padding-top: 10px;
+    justify-content: right;
+    margin: 0 50px 0 20px;
 }
-
-h2 {
-    padding-left: 20px;
+.filterTitle {
+    margin: 20px 20px 10px 20px;
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 12px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #4a4a4a;
 }
-
-li {
+.filterItem {
     display: flex;
-    padding: 10px 0 10px 50px;
+    justify-content: start;
+}
+.filterItem label {
+    /* font-family: Open Sans; */
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 20px;
+    color: #4a4a4a;
+}
+
+input[type='checkbox'] + label {
+    display: block;
+    padding: 10px 20px;
 }
 
 input[type='checkbox'] {
     display: none;
 }
-label {
-    position: relative;
-}
-label:before {
+
+input[type='checkbox'] + label {
     display: block;
-    content: '';
+    cursor: pointer;
+    margin-bottom: 0;
+}
+
+input[type='checkbox'] {
+    display: none;
+}
+
+input[type='checkbox'] + label:before {
+    margin-right: 10px;
+    content: '\2714';
+    border: 1px solid #9abbce;
+    box-sizing: border-box;
+    border-radius: 2px;
+    display: inline-block;
     width: 20px;
     height: 20px;
-    position: absolute;
-    left: -30px;
-    outline: 1px solid #9abbce;
-    border-radius: 2px;
+    padding-left: 0.3em;
+    vertical-align: bottom;
+    color: transparent;
+    transition: 0.2s;
 }
+
+input[type='checkbox'] + label:active:before {
+    transform: scale(0);
+}
+
 input[type='checkbox']:checked + label:before {
-    content: '\2714';
-    display: inline-block;
-    box-sizing: border-box;
-    padding: 0 0 2px 4px;
     color: #2196f3;
+}
+
+input[type='checkbox']:checked + label {
+    background-color: #f1fcff;
 }
