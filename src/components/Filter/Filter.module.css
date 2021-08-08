@@ -1,9 +1,9 @@
 .filter {
-    width: 250px;
+    min-width: 165px;
     display: flex;
     flex-direction: column;
     justify-content: right;
-    margin: 0 50px 0 20px;
+    margin: 0 70px 0 0;
 }
 .filterTitle {
     margin: 20px 20px 10px 20px;
@@ -18,10 +18,8 @@
 }
 .filterItem {
     display: flex;
-    justify-content: start;
 }
 .filterItem label {
-    /* font-family: Open Sans; */
     font-style: normal;
     font-weight: normal;
     font-size: 13px;
@@ -55,8 +53,6 @@ input[type='checkbox'] + label:before {
     box-sizing: border-box;
     border-radius: 2px;
     display: inline-block;
-    width: 20px;
-    height: 20px;
     padding-left: 0.3em;
     vertical-align: bottom;
     color: transparent;
