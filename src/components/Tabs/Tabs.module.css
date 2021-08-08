@@ -1,5 +1,9 @@
 .blockTabs {
     display: flex;
+    cursor: pointer;
+}
+.blockTabs label:hover {
+    cursor: pointer;
 }
 
 input[type='radio'] {

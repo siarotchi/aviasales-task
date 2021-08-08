@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import s from './Ticket.module.css'
-import moment from 'moment'
 
 export class Ticket extends Component {
     constructor(props) {
@@ -11,11 +10,11 @@ export class Ticket extends Component {
     stopsWordForm = (number) => {
         const lastCharacter = number.toString().slice(-1)
         if (lastCharacter === '1') {
-            return 'Пересадка'
+            return 'Stop'
         } else if (lastCharacter === '2' || lastCharacter === '3') {
-            return 'Пересадки'
+            return 'Stops'
         } else {
-            return 'Пересадок'
+            return 'Stops'
         }
     }
 
@@ -23,22 +22,33 @@ export class Ticket extends Component {
         const minutes = number % 60
         const hours = (number - minutes) / 60
 
-        return `${hours}ч ${minutes}м`
+        return `${hours}h ${minutes}m`
     }
+    
     render() {
         const ticket = this.props.ticket
-        let date = new Date(ticket.segments[0].date)
-        let date2 = new Date(ticket.segments[1].date)
+        const date = new Date(ticket.segments[0].date)
+        const date2 = new Date(ticket.segments[1].date)
+        const copieDate  = new Date(date.getTime());
+        const copieDate2  = new Date(date2.getTime());
+        const arrivalTime = new Date(copieDate.setMinutes(copieDate.getMinutes() + ticket.segments[0].duration))
+        const arrivalTime2 = new Date(copieDate2.setMinutes(copieDate2.getMinutes() + ticket.segments[1].duration))
+        const options = {
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false
+          };
+
         return (
             <div
                 className="container mt-5"
                 //  key={`${index}_${ticket.price}`}
             >
+            <hr></hr>
                 <div className="row">
                     <div className="col-12-xl d-flex flex-column">
                         <div className="logo d-flex flex-row justify-content-between mb-2">
                             <h3 className={s.price}>{`${ticket.price} P`}</h3>
-                            {/* <img src={logoS7} alt="logo"></img> */}
                             <img
                                 className="carrier-image"
                                 src={`//pics.avs.io/110/36/${ticket.carrier}.png`}
@@ -49,13 +59,11 @@ export class Ticket extends Component {
                         <div className="d-flex flex-row justify-content-between">
                             <div className={s.block}>
                                 <p className={s.greyText}>
-                                    {`${ticket.segments[0].origin} -  
-                                ${ticket.segments[0].destination}`}
+                                    {`${ticket.segments[0].origin} - ${ticket.segments[0].destination}`}
                                 </p>
                                 <p className={s.blackText}>
-                                    {date.getHours()} : {date.getMinutes()}-
-                                    {/* {moment(ticket.segments[0].date).format('HH:MM')} -{' '}
-                                    {moment(ticket.segments[0].date).add(10, 'minutes').format('HH:MM')} */}
+                                {date.toLocaleString('en-US', options)} - 
+                                {` ${arrivalTime.toLocaleString('en-US', options)}`}                                  
                                 </p>
 
                                 <hr />
@@ -63,20 +71,16 @@ export class Ticket extends Component {
                                 ${ticket.segments[1].destination}`}</p>
 
                                 <p className={s.blackText}>
-                                    {moment(ticket.segments[0].date).format('HH:MM')} -{' '}
-                                    {/* {moment
-                                        .utc(ticket.segments[1].date)
-                                        .add(ticket.segments[1].duration, 'seconds')
-                                        .format('HH:MM')} */}
-                                    {/* {ticket.segments[1].date} */}
+                                {date2.toLocaleString('en-US', options)} - 
+                                {` ${arrivalTime2.toLocaleString('en-US', options)}`}  
                                 </p>
                             </div>
 
                             <div className={s.block}>
-                                <p className={s.greyText}>В ПУТИ</p>
+                                <p className={s.greyText}>Time on the road</p>
                                 <p className={s.blackText}>{this.calculateDuration(ticket.segments[0].duration)}</p>
                                 <hr />
-                                <p className={s.greyText}>В ПУТИ</p>
+                                <p className={s.greyText}>Time on the road</p>
                                 <p className={s.blackText}>{this.calculateDuration(ticket.segments[1].duration)}</p>
                             </div>
 

@@ -1,14 +1,10 @@
 import React, { useEffect } from 'react'
-// import useGetTickets from '../../hooks/useGetTickets'
-// import s from './Tickets.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { setUserId, setTickets } from '../../redux/action'
 import Tabs from '../Tabs/Tabs'
 import { Ticket } from '../Ticket/Ticket'
 
 export const Tickets = () => {
-    // const { tickets } = useGetTickets()
-    // useGetTickets()
 
     const dispatch = useDispatch()
     const userId = useSelector((state) => state.userId)
@@ -18,6 +14,7 @@ export const Tickets = () => {
         fetch(`https://front-test.beta.aviasales.ru/search`)
             .then((res) => res.json())
             .then((data) => dispatch(setUserId(data.searchId)))
+            // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     useEffect(() => {
@@ -26,6 +23,7 @@ export const Tickets = () => {
                 .then((res) => res.json())
                 .then((data) => dispatch(setTickets(data.tickets)))
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userId])
 
     if (!tickets.length) {

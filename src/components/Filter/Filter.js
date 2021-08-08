@@ -8,11 +8,11 @@ const Filter = () => {
     const filter = useSelector((state) => state.filter)
     const { all, zero, one, two, three } = filter
     const filterOptions = [
-        { label: 'Все', id: 1, checked: all, name: 'all' },
-        { label: 'Без пересадок', id: 2, checked: zero, name: 'zero' },
-        { label: '1 пересадки', id: 3, checked: one, name: 'one' },
-        { label: '2 пересадки', id: 4, checked: two, name: 'two' },
-        { label: '3 пересадки', id: 5, checked: three, name: 'three' },
+        { label: 'All', id: 1, checked: all, name: 'all' },
+        { label: 'No stops', id: 2, checked: zero, name: 'zero' },
+        { label: '1 stop', id: 3, checked: one, name: 'one' },
+        { label: '2 stops', id: 4, checked: two, name: 'two' },
+        { label: '3 stops', id: 5, checked: three, name: 'three' },
     ]
 
     function handleChange(e) {
@@ -21,7 +21,7 @@ const Filter = () => {
 
     return (
         <div className={s.filter}>
-            <p className={s.filterTitle}>Колическо пересадок</p>
+            <p className={s.filterTitle}>Stops on the way</p>
             {filterOptions.map((filter) => (
                 <div key={filter.id} className={s.filterItem}>
                     <input

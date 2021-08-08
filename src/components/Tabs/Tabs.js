@@ -14,9 +14,9 @@ const Tabs = () => {
     return (
         <div className={s.blockTabs}>
             <input type="radio" value="cheep" checked={sort === 'cheep'} onChange={handleChange} id="cheep" />
-            <label htmlFor="cheep">САМЫЙ ДЕШЕВЫЙ</label>
+            <label htmlFor="cheep">THE CHEAPEST</label>
             <input type="radio" value="fast" checked={sort === 'fast'} onChange={handleChange} id="fast" />
-            <label htmlFor="fast">САМЫЙ БЫСТРЫЙ</label>
+            <label htmlFor="fast">THE FASTEST</label>
         </div>
     )
 }
